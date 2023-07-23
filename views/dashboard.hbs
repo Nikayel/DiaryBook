@@ -1,1 +1,35 @@
-<h1>Dashboard</h>
+<h6>Dashobard</h6>
+<h3> Welcome {{name}}</h3>
+<p>Your diaries</p>
+{{#if diaries}}
+<table class="striped">
+  <thead>
+    <tr>
+      <th>title</th>
+      <th>Date</th>
+      <th>Status</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each diaries}}
+    <tr>
+      <td><a href = "/diaries/{{_id}}"</a></td>
+        <td>{{createdAt}}</td>
+        <td><span class="dash-status">{{Status}}</span></td>
+        <td></td>
+    </tr>
+
+
+    {{/each}}
+  </tbody>
+
+</table>
+
+
+{{else}}
+<p> No diaries yet</p>
+
+
+
+{{/if}}
