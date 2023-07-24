@@ -7,3 +7,134 @@ div.login-container{
   margin-top: 50px;
   text-align: center;
 }
+
+
+.fa-small{
+  font-size: 14px !important;
+}
+
+.btn-float{
+  float: left;
+  margin-right : 10px;
+}
+
+.img-small {
+  width : 155px;
+}
+
+.commenting{
+  font size : 10px;
+  color red;
+}
+
+
+
+
+
+@keyframes flash {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.flash-animation {
+  display: inline-block;
+  padding: 5px 10px;
+  animation: flash 1.5s infinite; /* Animation lasts for 1.5s for each iteration */
+  background-size: 200% 200%; /* Increase the size to create a gradient effect */
+  background-image: linear-gradient(-45deg, red, yellow, white); /* Define the gradient colors and direction */
+  animation-timing-function: linear; /* Use a linear timing function for smooth color transition */
+}
+.btnSubsub{
+  /* Your existing button styles */
+  background-image: linear-gradient(-45deg, #800000, #800080, #FFD700);
+  /* Define the new gradient colors (dark red, purple, gold) */
+  background-size: 200% 200%;
+  /* Increase the size to create a gradient effect */
+  animation: flash 2s infinite;
+  /* 2s for each iteration, the animation will repeat infinitely */
+  animation-timing-function: linear;
+  /* Use linear timing function for a smooth transition */
+}
+/* Keyframes for the gradient animation */
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Style for the "Say something" h3 element */
+#comment-form {
+  background: linear-gradient(90deg, red, yellow);
+  background-size: 200% 100%;
+  animation: gradient-animation 5s linear;
+}
+
+/* Hide the "Say something" h3 element after 5 seconds */
+.flash-animation {
+  animation: fadeOut 5s ease-in;
+}
+
+/* Keyframes for the fadeOut animation */
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+/* Keyframes for the gradient animation */
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Style for the "Say something" h5 element */
+#comment-form {
+  background: linear-gradient(90deg, red, yellow);
+  background-size: 200% 100%;
+  animation: gradient-animation 2s linear;
+}
+
+/* Style for the "Submit Comment" button */
+.btnSubsub {
+  background: linear-gradient(90deg, red, yellow);
+  background-size: 200% 100%;
+  animation: gradient-animation 4s linear;
+  transition: background-position 0.5s ease;
+}
+
+.btnSubsub:hover {
+  background-position: right center;
+}
+
+/* Hide the "Say something" h5 element after 5 seconds */
+.flash-animation {
+  animation: fadeOut 5s ease-in;
+}
+
+/* Keyframes for the fadeOut animation */
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}

@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col s12 m8">
+    <h3>{{diary.title}}
+      <small>{{{editIcon diary.user user diary._id false}}}</small>
+    </h3>
+    <div class="card story">
+      <div class="card-content">
+        <span class="card-title">{{formatDate diary.createdAt 'MMMM Do YYYY, h:mm:ss a'}}</span>
+        {{{diary.body}}}
+      </div>
+    </div>
+  </div>
+  <div class="col s12 m4">
+    <div class="card center-align">
+      <div class="card-content">
+        <span class="card-title">{{diary.user.displayName}}</span>
+        <img src="{{diary.user.image}}" class="circle responsive-img img-small" alt="Profile Picture" onerror="this.src='/path/to/default/image.jpg'">
+      </div>
+      <div class="card-action">
+        <a href="/diaries/user/{{diary.user._id}}">Read more From {{diary.user.firstName}}</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2>Comments</h2>
+<ul>
+  {{#each diary.comments}}
+    <li>
+      <div class="comment">
+         <p>{{this.user.displayName}}</p>
+        <p>{{ this.content }}</p>
+      </div>
+    
+    </li>
+  {{/each}}
+</ul>
+
+<h3 id = "comment-form" class="flash-animation">Say something: </h3>
+<form action="/diaries/{{diary._id}}/comment" method="post">
+  <textarea name="content" required></textarea>
+  <button type="submit" class="btnSubsub btn btn-red gradient-animation">Submit</button>
+</form>

@@ -1,0 +1,25 @@
+<div class="row">
+  {{#each diaries}}
+    <div class="col s12 m4">
+      <div class="card">
+        <div class="card-image">
+          {{{editIcon user ../user _id}}}
+        </div>
+        <div class="card-content center-align">
+          <h5>{{title}}</h5>
+          <p>{{stripTags (truncate body)}}</p>
+          <br>
+          <div class="chip">
+            <img src="{{user.image}}" alt="">
+            <a href="/diaries/user/{{user._id}}">{{user.displayName}}</a>
+          </div>
+        </div>
+        <div class="card-action center-align">
+          <a href="/diaries/{{_id}}" class="btn red">Read more</a>
+        </div>
+      </div>
+    </div>
+  {{else}}
+    <p><i class="fas fa-paragraph">No body has posted public diary yet :(</i></p>
+  {{/each}}
+</div>

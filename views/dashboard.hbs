@@ -1,6 +1,6 @@
-<h6>Dashobard</h6>
+<h6>Dashboard</h6>
 <h3> Welcome {{name}}</h3>
-<p>Your diaries</p>
+<h4>Your diaries:</h4>
 {{#if diaries}}
 <table class="striped">
   <thead>
@@ -14,10 +14,17 @@
   <tbody>
     {{#each diaries}}
     <tr>
-      <td><a href = "/diaries/{{_id}}"</a></td>
-        <td>{{createdAt}}</td>
-        <td><span class="dash-status">{{Status}}</span></td>
-        <td></td>
+      <td><a href = "/diaries/{{_id}}">{{title}}</a></td>
+        <td>{{formatDate createdAt "ddd, hA"}}</td>
+        <td><span class="dash-status">{{status}}</span></td>
+        <td> <a href="/diaries/edit/{{_id}}" class="btn btn-float" >          <i class="fa-solid fa-pen" style="font-size:14px"></i>
+ </a>
+ <form class="" action="/diaries/{{_id}}" method="POST" id="delete-form">
+   <input type="hidden" name="_method" value="DELETE">
+   <button type="submit" name="button" class="btn red">
+<i class="fa-solid fa-explosion fa-xs"></i>   </button>
+ </form>
+        </td>
     </tr>
 
 
@@ -28,7 +35,8 @@
 
 
 {{else}}
-<p> No diaries yet</p>
+
+<p><i class="fa-solid fa-empty-set"> <br>OH No! You havent logged any diaries yet<br> <br>  No worries click on   +   button to add one</i>   </p>
 
 
 

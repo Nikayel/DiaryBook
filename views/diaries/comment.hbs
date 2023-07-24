@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ diary.title }}</title>
+</head>
+<body>
+  <h1>{{ diary.title }}</h1>
+  <p>{{ diary.body }}</p>
+
+  <h2>Comments</h2>
+  <ul>
+    {{#each diary.comments}}
+      <li>{{ this.content }}
+
+      </li>
+    {{/each}}
+  </ul>
+
+</body>
+</html>

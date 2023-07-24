@@ -13,16 +13,34 @@ const DiarySchema = new mongoose.Schema({
   status: {
     type: String,
     default: "public",
-    enum: ["public", "private"], // Corrected typo "priate" to "private"
+    enum: ["public", "private"],
   },
   user: {
-    type: mongoose.Schema.Types.ObjectId, // Corrected property name "objectId" to "ObjectId"
+    type: mongoose.Schema.Types.ObjectId, //
     ref: "User",
   },
   createdAt: {
     type: Date,
     default: Date.now,
   },
+  comments: [{
+   content: {
+     type: String,
+     required: true,
+   },
+   user: {
+     type: mongoose.Schema.Types.ObjectId,
+     ref: "User",
+   },
+   createdAt: {
+     type: Date,
+     default: Date.now,
+   },
+ },
+],
 });
+
+
+
 
 module.exports = mongoose.model("Diary", DiarySchema);

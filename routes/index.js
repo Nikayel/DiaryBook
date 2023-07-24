@@ -15,7 +15,7 @@ router.get("/dashboard", authenticateUser, async function(req, res) {
     const diaries = await Diary.find({ user: req.user.id }).lean();
     res.render("dashboard", {
       name: req.user.firstName,
-      diaries // Corrected variable name from "stories" to "diaries"
+      diaries //
     });
   } catch (err) {
     console.log(err);

@@ -3,10 +3,11 @@ const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const morgan = require("morgan");
 const exphbs = require("express-handlebars");
+const methodOverride = require("method-override");
 const path = require("path");
 const mongoose = require("mongoose");
 const session = require("express-session");
-const MemoryStore = require("memorystore")(session); // MemoryStore as an example
+const MemoryStore = require("memorystore")(session);
 const passport = require("passport");
 
 // config
@@ -18,10 +19,33 @@ connectDB();
 
 const app = express();
 
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
+//looking for _method and override it with what I intend
+app.use(
+  methodOverride(function (req, res) {
+    if (req.body && typeof req.body === "object" && "_method" in req.body) {
+      let method = req.body._method;
+      delete req.body._method;
+      return method;
+    }
+  })
+);
+
 // Logging using morgan
-if (process.env.NODE_ENV === "development") {
-  app.use(morgan("dev"));
-}
+// if (process.env.NODE_ENV === "development") {
+//   app.use(morgan("dev"));
+// }
+
+//handlebars
+const {
+  formatDate,
+  stripTags,
+  truncate,
+  editIcon,
+  select,
+} = require("./helpers/hbs");
 
 // Static folder
 app.use(express.static(path.join(__dirname, "public")));
@@ -33,23 +57,32 @@ app.use(
     resave: false,
     saveUninitialized: false,
     store: new MemoryStore({
-      checkPeriod: 86400000, // prune expired entries every 24h
+      checkPeriod: 86400000,
     }),
   })
 );
-
 
 // Passport middleware (make sure this comes after the session middleware)
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(function (req, res, next) {
+  res.locals.user = req.user || null;
+  next();
+});
+
 // Routes
 app.use("/", require("./routes/index"));
 app.use("/auth", require("./routes/auth"));
+app.use("/diaries", require("./routes/diaries"));
 
 app.engine(
   ".hbs",
-  exphbs.engine({ defaultLayout: "main", extname: ".hbs" })
+  exphbs.engine({
+    helpers: { formatDate, stripTags, truncate, editIcon, select },
+    defaultLayout: "main",
+    extname: ".hbs",
+  })
 );
 app.set("view engine", ".hbs");
 
